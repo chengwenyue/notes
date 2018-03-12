@@ -17,3 +17,9 @@
 	git checkout (branchname) 切换分支
 	
 	git clone -b 指定分支 url
+
+
+---
+###git图形化界面
+
+[GitKraken](https://www.gitkraken.com/)
