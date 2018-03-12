@@ -56,4 +56,6 @@ this.locatorStrategies = ['xpath', 'id', 'class name', 'accessibility id', '-and
 - 10 UIAutomator2驱动不支持By.name查找
 
 - 11 部分手机会弹出权限获取弹框，需要在打开应用的时候进行处理
+
+- 12 appium会在C:\Users\31010\AppData\Local\Temp产生非常大的日志文件 文件大小能达到7-8G
 	

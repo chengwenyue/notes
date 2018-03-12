@@ -26,6 +26,7 @@ docker pull nginx:latest
 adb 1.0.39 不能使用 adb fork-server 
 
 通过adb nodaemon server -a运行adb服务
+adb -a -P 5037 server nodaemon
 
 adb -a -P 5037 fork-server server
 
