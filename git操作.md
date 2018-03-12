@@ -18,6 +18,11 @@
 	
 	git clone -b 指定分支 url
 
+###git pull报错(non-fast-forward)
+
+本地比远程新，直接执行push
+
+
 
 ---
 ###git图形化界面
