@@ -17,6 +17,8 @@
 	git checkout (branchname) 切换分支
 	
 	git clone -b 指定分支 url
+	
+	git merge命令用于合并指定分支到当前分支
 
 ###git pull报错(non-fast-forward)
 
@@ -28,3 +30,13 @@
 ###git图形化界面
 
 [GitKraken](https://www.gitkraken.com/)
+
+
+###拉取远程分支并创建本地分支
+
+
+	1.git checkout -b 本地分支名x origin/远程分支名x
+使用该方式会在本地新建分支x，并自动切换到该本地分支x。
+
+	2.git fetch origin 远程分支名x:本地分支名x
+使用该方式会在本地新建分支x，但是不会自动切换到该本地分支x，需要手动checkout。

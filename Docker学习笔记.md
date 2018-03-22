@@ -92,4 +92,15 @@ RUN 指令是用来执行命令行命令的。由于命令行的强大能力，R
 当构建的时候，用户会指定构建镜像上下文的路径，docker build 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。
 
 
-###默认子网ip
+
+###Docker镜像导入导出
+
+1.导出镜像docker save
+
+	docker save 9045 > tomcat8-apr.tar
+
+2.载入镜像
+
+	docker load < tomcat8-apr.tar
+
+	
