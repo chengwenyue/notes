@@ -6,3 +6,9 @@
 	4. VirtualBox  必选
 	5. Kitematic for Windows 可选
 	6. Git for Windows 可选
+
+
+###docker 加速器网址
+
+	官方加速器网址
+	https://registry.docker-cn.com/
