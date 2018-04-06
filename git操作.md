@@ -22,6 +22,8 @@
 	
 	git config --list查看已设配置
 
+	git remote add origin https://github.com/chengwenyue/TSWeb.git 添加远程仓库
+
 ###git pull报错(non-fast-forward)
 
 本地比远程新，直接执行push
@@ -32,3 +34,17 @@
 ###git图形化界面
 
 [GitKraken](https://www.gitkraken.com/)
+
+
+###github初始
+create a new repository on the command line
+	echo "# TSWeb" >> README.md
+	git init
+	git add README.md
+	git commit -m "first commit"
+	git remote add origin git@github.com:chengwenyue/TSWeb.git
+	git push -u origin master
+
+push an existing repository from the command line
+	git remote add origin https://github.com/chengwenyue/TSWeb.git
+	git push -u origin master

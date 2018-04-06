@@ -53,6 +53,10 @@ AUFS是一种Union File System，所谓UnionFS就是把不同物理位置的目�
 	ubuntu:16.04 \
 	bash
 
+	
+	options
+	--rm   //当容器退出是自动删除
+	-e  //设置容器的环境变量
 
 3.列出镜像
 
@@ -103,4 +107,54 @@ RUN 指令是用来执行命令行命令的。由于命令行的强大能力，R
 
 	docker load < tomcat8-apr.tar
 
-	
+
+
+###Docker重启策略
+
+Docker容器的重启策略是面向生产环境的一个启动策略，在开发过程中可以忽略该策略。
+
+Docker容器的重启都是由Docker守护进程完成的，因此与守护进程息息相关。
+
+Docker容器的重启策略如下：
+
+- no，默认策略，在容器退出时不重启容器
+- on-failure，在容器非正常退出时（退出状态非0），才会重启容器
+
+	on-failure:3，在容器非正常退出时重启容器，最多重启3次
+
+- always，在容器退出时总是重启容器
+- unless-stopped，在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器
+
+示例：
+
+	docker run -d --restart=always bba-208
+	docker run -d --restart=on-failure:10 bba-208
+###Centos
+docker pull centos:7.2.1511
+
+
+docker run -d -it --name centos1 centos:7.2.1511 /bin/bash
+
+
+docker exec -it centos1 /bin/bash
+
+
+
+---
+
+###Zookeeper
+
+
+	docker pull zookeeper
+
+	https://github.com/31z4/zookeeper-docker/blob/master/README.md
+
+	docker-compose -f zk.yml -p zk-test up
+
+	docker-compose -f zk.yml -p zktest ps
+
+	docker run -it --rm \
+        --net zk_default \
+        zookeeper zkCli.sh -server zoo1:2181
+
+---
