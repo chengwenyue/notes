@@ -24,19 +24,19 @@
 
 	git remote add origin https://github.com/chengwenyue/TSWeb.git 添加远程仓库
 
-###git pull报错(non-fast-forward)
+### git pull报错(non-fast-forward)
 
 本地比远程新，直接执行push
 
 
 
 ---
-###git图形化界面
+### git图形化界面
 
 [GitKraken](https://www.gitkraken.com/)
 
 
-###github初始
+### github初始化
 create a new repository on the command line
 	echo "# TSWeb" >> README.md
 	git init

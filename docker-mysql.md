@@ -1,4 +1,4 @@
-###mysql参数
+### mysql参数
 
 `MYSQL_HOST`：设置mysql主机名<br>
 `MYSQL_ROOT_PASSWORD`：设置root密码<br>
@@ -12,12 +12,12 @@
 
 -net testlink-tier:选择网络（docker network create）
 
-###mysql数据存储在本地
+### mysql数据存储在本地
 
 映射本地目录到`/var/lib/mysql`
 	-v 本地数据目录:/var/lib/mysql \
 
-###mysql指定配置文件
+### mysql指定配置文件
 
 	-v 本地文件地址:/etc/mysql/mysql.conf.d/mysqld.cnf
 
@@ -40,12 +40,12 @@
 	mysql:5.7.20
 
 
-###docker mysql设置mysql编码为utf8
+### docker mysql设置mysql编码为utf8
 
 	--character-set-server=utf8mb4 \
 	--collation-server=utf8mb4_unicode_ci 
 
-###mysql配置文件
+### mysql配置文件
 路径：`/etc/mysql/mysql.conf.d/mysqld.cnf`<br>
 内容：
 
@@ -59,7 +59,9 @@
 	# Disabling symbolic-links is recommended to prevent assorted security risks
 	#symbolic-links=0
 
-### 
+---
+启动一个mysql
+
 	docker run --name mysql2 \
 	--net testlink-tier \
 	-p 3307:3306 \
@@ -72,6 +74,6 @@
 	--collation-server=utf8mb4_unicode_ci 
 
 
-###mysql查看编码
+### mysql查看编码
 
 	SHOW VARIABLES LIKE 'character_set_%';

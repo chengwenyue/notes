@@ -1,4 +1,4 @@
-##appium
+## appium
 
 - 1. appium 和 seleium 共同使用时会出现类型转换错误，解决方法是保证appium和seleium的maven依赖一致
 
@@ -59,3 +59,7 @@ this.locatorStrategies = ['xpath', 'id', 'class name', 'accessibility id', '-and
 
 - 12 appium会在C:\Users\31010\AppData\Local\Temp产生非常大的日志文件 文件大小能达到7-8G
 	
+- 13 chrome版本对应
+
+		chromedriver-2.34    chrome 64
+
