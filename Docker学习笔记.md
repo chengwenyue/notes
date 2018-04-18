@@ -161,3 +161,31 @@ docker exec -it centos1 /bin/bash
         zookeeper zkCli.sh -server zoo1:2181
 
 ---
+
+### Redis
+
+
+	docker run --name redis1 \
+	-v /usr/local/docker/redis/data:/data \
+	-p 6379:6379 \
+	-d redis:3.2 redis-server --appendonly yes
+
+	docker run -it --rm \
+        redis:3.2 redis-cli \
+		-h 172.17.0.2 -p 6379
+
+---
+
+### Gitlab
+
+	sudo docker pull gitlab/gitlab-ce:latest
+
+
+	sudo docker run --detach \
+	--hostname 192.168.5.101 \
+    --publish 10443:443 --publish 1080:80 --publish 1022:22 \
+    --name gitlab \
+    --volume /usr/local/docker/gitlab/config:/etc/gitlab \
+    --volume /usr/local/docker/gitlab/logs:/var/log/gitlab \
+    --volume /usr/local/docker/gitlab/data:/var/opt/gitlab \
+    gitlab/gitlab-ce:latest

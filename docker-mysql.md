@@ -62,12 +62,11 @@
 ---
 启动一个mysql
 
-	docker run --name mysql2 \
-	--net testlink-tier \
+	docker run --name mysql \
 	-p 3307:3306 \
 	-v /etc/mysql/my.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf \
 	-e MYSQL_ROOT_PASSWORD=123456 \
-	-e MYSQL_HOST=mysql2 \
+	-e MYSQL_HOST=mysql \
 	-e MYSQL_ROOT_HOST=% \
 	-d mysql:5.7.20 \
 	--character-set-server=utf8mb4 \
