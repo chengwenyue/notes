@@ -48,3 +48,35 @@ create a new repository on the command line
 push an existing repository from the command line
 	git remote add origin https://github.com/chengwenyue/TSWeb.git
 	git push -u origin master
+
+
+### git本地远程仓库
+
+1.在远程服务器上
+
+	git init --bare 
+
+`--bare`： 创建一个裸仓库，是没有工作区的，只会记录git提交的历史信息， 初始化的目录等同于一个.git目录的内容
+
+2.在本地机器上
+
+	git clone ssh://username@192.168.5.101:22/usr/local/git_repository/demo
+
+
+使用ssh协议访问远程仓库，
+
+`192.168.5.101`：服务器ip
+
+`22`：ssh端口
+
+`username`：ssh登陆用户名
+
+`/usr/local/git_repository/demo`：远程仓库所在路径
+
+3.在服务器上克隆本地远程仓库
+
+	git clone /usr/local/git_repository/spring-demo/
+
+`/usr/local/git_repository/spring-demo/`：本地远程仓库路径
+
+

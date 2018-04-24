@@ -34,7 +34,9 @@ adb -a -P 5037 fork-server server
 
 
 ### jenkins
-docker run -itd -p 8080:8080 -p 50000:50000 --name jenkins --privileged=true  -v /home/docker/jenkins:/var/jenkins_home jenkins
+docker run -itd -p 18080:8080 -p 50000:50000 --name jenkins --privileged=true  -v /usr/local/docker/jenkins:/var/jenkins_home jenkins
+
+	
 
 ### jenkins获取密码
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword

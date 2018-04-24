@@ -5,3 +5,9 @@
 
 ### 删除无用的数据卷
 	docker volume ls   --filter dangling=true | grep local |awk '{print $2}'|xargs docker volume rm
+
+### 数据卷权限问题
+
+查看容器用户
+
+ 	docker run -ti --rm --entrypoint="/bin/bash" jenkins -c "whoami && id"
