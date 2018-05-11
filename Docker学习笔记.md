@@ -176,7 +176,7 @@ docker exec -it centos1 /bin/bash
 
 ---
 
-### Gitlab
+### Gitlab类似github的一个网站
 
 	sudo docker pull gitlab/gitlab-ce:latest
 
@@ -189,3 +189,21 @@ docker exec -it centos1 /bin/bash
     --volume /usr/local/docker/gitlab/logs:/var/log/gitlab \
     --volume /usr/local/docker/gitlab/data:/var/opt/gitlab \
     gitlab/gitlab-ce:latest
+
+### ngrok内网转发
+
+[使用Docker搭建Ngrok服务器](https://hteen.cn/docker/docker-ngrok.html)
+
+启动一个容器生成ngrok客户端,服务器端和CA证书
+
+	docker run --rm -it -e DOMAIN="ngrok.comeon111.xyz" \
+	-v /data/ngrok:/myfiles hteen/ngrok /bin/sh /build.sh
+
+启动Ngrok server不绑定80和443端口
+
+	docker run -idt --name ngrok-server \
+	-v /data/ngrok:/myfiles \
+	-p 8082:80 \
+	-p 4432:443 \
+	-p 4443:4443 \
+	-e DOMAIN='ngrok.comeon111.xyz' hteen/ngrok /bin/sh /server.sh

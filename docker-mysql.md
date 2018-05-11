@@ -63,7 +63,7 @@
 启动一个mysql
 
 	docker run --name mysql \
-	-p 3307:3306 \
+	-p 3306:3306 \
 	-v /etc/mysql/my.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf \
 	-e MYSQL_ROOT_PASSWORD=123456 \
 	-e MYSQL_HOST=mysql \
