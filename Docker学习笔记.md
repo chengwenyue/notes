@@ -130,6 +130,10 @@ Docker容器的重启策略如下：
 	docker run -d --restart=always bba-208
 	docker run -d --restart=on-failure:10 bba-208
 
+如果创建时未指定 --restart=always ,可通过update 命令设置
+
+	docker update --restart=always xxx
+
 ## Docker部分容器启动示例
 
 ### Centos

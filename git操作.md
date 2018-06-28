@@ -84,3 +84,10 @@ push an existing repository from the command line
 `/usr/local/git_repository/spring-demo/`：本地远程仓库路径
 
 
+### git本地服务器
+
+可以在本地搭建类似github的服务，用于git的托管。
+
+- gitlab
+- gitblit
+- gogs

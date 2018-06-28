@@ -11,3 +11,7 @@
 查看容器用户
 
  	docker run -ti --rm --entrypoint="/bin/bash" jenkins -c "whoami && id"
+
+### 查看各个日志的文件大小
+	
+	ls -lh $(find /var/lib/docker/containers/ -name *-json.log)
