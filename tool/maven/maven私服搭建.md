@@ -4,7 +4,7 @@
 
 maven私服需要使用java环境，首先确保java环境是否存在。
 
-![java环境](images/maven.png)
+![java环境](../../images/maven.png)
 
 需要用到的资源包
 

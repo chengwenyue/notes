@@ -1,0 +1,95 @@
+## linux日常记录
+### find
+
+查看空文件夹
+
+	find -type d -empty
+
+### systemctl
+
+
+重新加载service文件
+
+	systemctl daemon-reload
+
+启动一个服务
+
+	systemctl start nginx-1.13.0.service
+
+设置开机自启动
+
+	systemctl enable nfs-server.service
+
+停止开机自启动
+
+	systemctl disable nfs-server.service
+
+查看服务当前状态
+
+	systemctl status nfs-server.service
+
+
+### 服务器带宽测试
+
+#### iperf
+	
+**服务端**
+	
+	iperf -s
+
+**客户端**
+
+	iperf -c <server ip>
+
+**iperf常用选项**
+
+	##通用选项
+	-f <kmKM>    报告输出格式。 [kmKM]   format to report: Kbits, Mbits, KBytes, MBytes
+	-i <sec>    在周期性报告带宽之间暂停n秒。如周期是10s，则-i指定为2，则每隔2秒报告一次带宽测试情况,则共计报告5次
+	-p    设置服务端监听的端口，默认是5001
+	-u    使用UDP协议测试
+	-w n<K/M>   指定TCP窗口大小
+	-m    输出MTU大小
+	-M    设置MTU大小
+	-o <filename>    结果输出至文件
+	
+	##服务端选项
+	-s    iperf服务器模式
+	-d    以后台模式运行服务端
+	-U    运行一个单一线程的UDP模式
+
+	##客户端选项
+	
+	-b , --bandwidth n[KM]    指定客户端通过UDP协议发送数据的带宽（bit/s）。默认是1Mbit/s
+	-c <ServerIP>    以客户端模式运行iperf，并且连接至服务端主机ServerIP。 eg:  iperf -c <server_ip>
+	-d    双向测试
+	-t    指定iperf带宽测试时间，默认是10s。  eg:  iperf -c <server_ip> -t 20
+	-P    指定客户端并发线程数，默认只运行一个线程。 eg,指定3个线程 : iperf -c <server_ip> -P 3
+	-T    指定TTL值
+
+例子：
+
+	服务端：
+	perf -s -i 2
+	客户端：
+	iperf -c 192.168.159.135 -i 2
+
+以上测试都是客户端到服务端的上行带宽测试，还需要进行下行测试。
+
+#### 查看系统位数
+
+	getconf LONG_BIT
+
+#### 移除过期的SSH密钥
+
+	ssh-keygen -f "/root/.ssh/known_hosts" -R 192.168.0.106
+
+#### 删除虚拟网卡
+
+	ifconfig <网桥名> down
+
+#### 查看cpu信息
+
+	cat /proc/cpuinfo 
+	
+	cat /proc/cpuinfo | grep processor | wc -l
