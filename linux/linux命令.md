@@ -93,3 +93,7 @@
 	cat /proc/cpuinfo 
 	
 	cat /proc/cpuinfo | grep processor | wc -l
+
+#### 查看安装过的包
+
+	dpkg -l
