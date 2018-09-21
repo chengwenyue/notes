@@ -97,3 +97,41 @@
 #### 查看安装过的包
 
 	dpkg -l
+
+### zip压缩
+
+	将目录html压缩到当前目录的html.zip中
+	zip -q -r html.zip /home/Blinux/html
+
+### 记一次linux隐藏进程号的方法
+
+1.正常启动进程
+
+例如启动redis服务
+
+	bin/redis-server conf/redis.conf
+
+启动后可用ps查看进程
+	
+	ps -ef | grep redis
+输出：
+	
+	root       1237      1  0 14:01 ?        00:00:00 bin/redis-server 127.0.0.1:6379
+
+2.新建一个文件夹
+
+	mkdir myshell
+
+文件夹的索引号为：`933634`
+
+	933634 drwxr-xr-x 2 root root  4096 Sep  5 14:03 myshell
+
+3.使用mount将`/proc/<redis-pid>`挂载到`myshell`目录
+
+	mount -B myshell /proc/1237/
+这时使用`ps -ef`查看不到redis服务进程，但是redis服务正常运行。
+
+原理：利用mount -B 命令，将`/proc`下进程信息隐藏。此时`/proc/1237`文件夹的索引号`933634`与`myshell`文件夹相同。
+
+	ls -lai /proc/ | grep 1237
+	933634 drwxr-xr-x   2 root             root                        4096 Sep  5 14:03 1237

@@ -28,3 +28,8 @@ Jquery的扩展方法原型是:　
 ### esayui记录
 
 [esayui记录](./easyui使用记录.md)
+
+### js自执行函数写法
+
+	(function () { /* code */ } ()); // 推荐使用这个
+	(function () { /* code */ })(); // 但是这个也是可以用的

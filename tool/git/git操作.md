@@ -27,6 +27,11 @@
 	git config --system --list 查看系统config
 	git config --global  --list 查看当前用户（global）配置
 	git config --local  --list 查看当前仓库配置信息
+
+	
+	git config --system --unset credential.helper  清除账户密码
+	
+	git config --global credential.helper store 保存账户密码
 ### git pull报错(non-fast-forward)
 
 本地比远程新，直接执行push
