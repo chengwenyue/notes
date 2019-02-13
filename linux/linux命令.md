@@ -103,6 +103,28 @@
 	将目录html压缩到当前目录的html.zip中
 	zip -q -r html.zip /home/Blinux/html
 
+### tar压缩
+
+	tar -cvf log.tar log2012.log    仅打包，不压缩！ 
+	tar -zcvf log.tar.gz log2012.log   打包后，以 gzip 压缩 
+	tar -jcvf log.tar.bz2 log2012.log  打包后，以 bzip2 压缩 
+
+	--no-same-owner 目录权限会使用当前操作用户的权限作为文件的所属
+查阅tar包内有哪些文件：
+
+	tar -ztvf log.tar.gz
+
+### centos7 修改时间和时区
+
+	timedatectl set-local-rtc 1 # 将硬件时钟调整为与本地时钟一致, 0 为设置为 UTC 时间
+	或者 hwclock --systohc --localtime 
+
+	timedatectl set-timezone Asia/Shanghai # 设置系统时区为上海
+	
+	替换/etc/localtime文件
+	[root@test ~]# mv /etc/localtime /etc/localtime.bak
+	[root@test ~]# cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 ### 记一次linux隐藏进程号的方法
 
 1.正常启动进程
@@ -135,3 +157,37 @@
 
 	ls -lai /proc/ | grep 1237
 	933634 drwxr-xr-x   2 root             root                        4096 Sep  5 14:03 1237
+
+### scp使用
+
+写法
+>scp [可选参数] file_source file_target 
+
+参数说明：
+
+	-r： 递归复制整个目录。
+命令格式：
+
+
+	scp local_file remote_username@remote_ip:remote_folder 
+	或者 
+	scp local_file remote_username@remote_ip:remote_file 
+	或者 
+	scp local_file remote_ip:remote_folder 
+	或者 
+	scp local_file remote_ip:remote_file 
+
+
+### 添加用户
+
+添加用户命令：
+
+	adduser tmp_3452
+修改密码命令：
+
+	passwd tmp_3452
+删除用户
+
+	
+	userdel tmp_3452
+	-f 连同用户文件夹一起删除
