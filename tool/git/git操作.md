@@ -32,6 +32,15 @@
 	git config --system --unset credential.helper  清除账户密码
 	
 	git config --global credential.helper store 保存账户密码
+
+
+	git branch -a，列出所有分支名称如下：
+	remotes/origin/dev
+	remotes/origin/release
+	git checkout -b dev origin/dev，作用是checkout远程的dev分支，在本地起名为dev分支，并切换到本地的dev分支
+	git checkout -b release origin/release，作用参见上一步解释
+	git checkout dev，切换回dev分支，并开始开发。
+
 ### git pull报错(non-fast-forward)
 
 本地比远程新，直接执行push

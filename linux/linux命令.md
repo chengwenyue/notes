@@ -114,6 +114,10 @@
 
 	tar -ztvf log.tar.gz
 
+一次性解压多个文件
+
+	for tar in *.tar.gz; do tar xvf $tar; done
+
 ### centos7 修改时间和时区
 
 	timedatectl set-local-rtc 1 # 将硬件时钟调整为与本地时钟一致, 0 为设置为 UTC 时间
