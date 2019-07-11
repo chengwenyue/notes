@@ -195,3 +195,22 @@
 	
 	userdel tmp_3452
 	-f 连同用户文件夹一起删除
+
+### linux文本处理
+
+[linux文本处理.md](./linux文本处理.md)
+
+### ssh 本地端口转发
+
+[SSH 端口转发](https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/)
+
+	ssh -L 7001:172.16.0.105:1521 -N root@180.153.71.113
+	
+	ssh -L 7001:172.16.0.105:1521 -N root@180.153.71.113
+
+### nohup 命令使用
+
+	nohup command > myout.file 2>&1 &
+
+	在上面的例子中，0 – stdin (standard input)，1 – stdout (standard output)，2 – stderr (standard error) ；
+	2>&1是将标准错误（2）重定向到标准输出（&1），标准输出（&1）再被重定向输入到myout.file文件中。

@@ -55,3 +55,33 @@
 	(其中24,111分别是上面查询出的sid,serial#)
 
 参考 [https://blog.csdn.net/solid_j/article/details/80026829](https://blog.csdn.net/solid_j/article/details/80026829)
+
+
+### oralce 从一个用户expdp导出再impdp导入到另一个用户
+
+如果想导入的用户已经存在:
+
+1. 导出用户 expdp user1/pass1 directory=dumpdir dumpfile=user1.dmp
+2. 导入用户 impdp user2/pass2 directory=dumpdir dumpfile=user1.dmp REMAP_SCHEMA=user1:user2 EXCLUDE=USER
+
+如果想导入的用户不存在:
+
+1. 导出用户 expdp user1/pass1 directory=dumpdir dumpfile=user1.dmp
+2. 导入用户 impdp system/passsystem directory=dumpdir dumpfile=user1.dmp REMAP_SCHEMA=user1:user2
+3. user2会自动建立，其权限和使用的表空间与user1相同，但此时用user2无法登录，必须修改user2的密码
+
+
+### oracle导入dmp文件
+
+
+按用户导入
+
+	impdp kms/nkipwdu directory=qldb dumpfile=znkf_zo_2019_06_25_12.dmp remap_tablespace=kms_cloud:kms remap_schema=znkf_zo:kms logfile=20190627.log;
+
+按表导入
+
+	impdp B/passwdtables=A.table1,A.table2 remap_schema=A:B directory=data_dir dumpfile=expdp.dmp logfile=impdp.log;
+
+
+
+参考[https://www.cnblogs.com/promise-x/p/7477360.html](https://www.cnblogs.com/promise-x/p/7477360.html)
