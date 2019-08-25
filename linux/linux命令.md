@@ -195,3 +195,7 @@
 	
 	userdel tmp_3452
 	-f 连同用户文件夹一起删除
+
+### linux文本处理
+
+[linux文本处理.md](./linux文本处理.md)

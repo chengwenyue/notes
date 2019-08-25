@@ -1,4 +1,4 @@
-
+### 名词
 `assembly`：简单的说，maven-assembly-plugin 就是用来帮助打包用的，比如说打出一个什么类型的包，包里包括哪些内容等等。
 
 `strom`:Storm 大数据实事计算系统，是Twitter开源的一个分布式的实时计算系统
