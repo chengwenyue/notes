@@ -48,4 +48,4 @@ spring boot会根据引入的包和组件自动往容器中注入可能需要使
 
 具体原理解析参考博客[SpringBoot之@EnableAutoConfiguration注解](https://blog.csdn.net/zxc123e/article/details/80222967)
 
-3.	
+

@@ -118,6 +118,21 @@
 
 	for tar in *.tar.gz; do tar xvf $tar; done
 
+
+tar打包排除某个目录
+ 	tar zcvf fd.tar.gz * --exclude=file1 --exclude=dir1
+
+注意：
+
+1、--exclude=file1 而不是 --exclude file1
+
+2、要排除一个目录是--exclude=dir1而不是--exclude=dir1/
+
+也可以在父目录打包
+
+	tar zcvf fd.tar.gz pardir --exclude=pardir/file1 --exclude=pardir/dir1
+
+
 ### centos7 修改时间和时区
 
 	timedatectl set-local-rtc 1 # 将硬件时钟调整为与本地时钟一致, 0 为设置为 UTC 时间

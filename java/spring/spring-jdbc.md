@@ -1,4 +1,4 @@
-##DataSource自动注入
+##1. DataSource自动注入
 
 **起始类为：**
 
@@ -60,9 +60,9 @@
 
 至此spring 会依据spring.datasource配置进行连接池的初始化，并加入到容器中。
 
-### springboot 事务
+## 2. springboot 事务
 
-#### 使用springboot事务
+### 2.1 使用springboot事务
 
 1.开启事务注解`@EnableTransactionManagement`，使用方式是在spring boot启动类上添加。
 
@@ -70,5 +70,39 @@
 2.在业务方法上添加`@Transactional`注解。
 
 
+### 2.2 源码解析
+
+注解`@EnableTransactionManagement`部分源码如下：
+
+	@Target(ElementType.TYPE)
+	@Retention(RetentionPolicy.RUNTIME)
+	@Documented
+	@Import(TransactionManagementConfigurationSelector.class)
+	public @interface EnableTransactionManagement {
 
 
+由`TransactionManagementConfigurationSelector`类处理配置，默认使用`PROXY`模式代理，
+注入`AutoProxyRegistrar`和`ProxyTransactionManagementConfiguration`配置。
+
+
+
+	@Override
+	protected String[] selectImports(AdviceMode adviceMode) {
+		switch (adviceMode) {
+			case PROXY:
+				return new String[] {AutoProxyRegistrar.class.getName(),
+						ProxyTransactionManagementConfiguration.class.getName()};
+			case ASPECTJ:
+				return new String[] {determineTransactionAspectClass()};
+			default:
+				return null;
+		}
+	}
+
+
+**ProxyTransactionManagementConfiguration**是自动注入spring boot事务的核心配置。
+共注入3个对象。
+
+ 
+
+ 
