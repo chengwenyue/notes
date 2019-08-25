@@ -39,6 +39,8 @@
 修改vimrc文件
 
 	vim /etc/vim/vimrc
+	
+	centos : vim /etc/vimrc
 新增如下内容
 
     set ts=4
