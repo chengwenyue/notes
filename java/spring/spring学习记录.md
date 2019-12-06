@@ -15,3 +15,9 @@ DefaultListableBeanFactory基本实现所有的BeanFactory接口，所以在Appl
 
 BeanDefinition 就是 Spring 的 Bean，我们自己定义的各个 Bean 其实会转换成一个个 BeanDefinition 存在于 Spring 的 BeanFactory 中
 
+
+## 4. InstantiationAwareBeanPostProcessor和BeanPostProcessor
+
+Bean处理器
+
+https://blog.csdn.net/lk1728183655/article/details/80565269
