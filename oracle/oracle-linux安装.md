@@ -6,6 +6,8 @@ oracle版本：`oracle 11g 11.2.0.4`
 
 linux系统：`centos7`
 
+oracle7个安装包介绍：[oracle7个安装包介绍](https://www.cnblogs.com/Jingkunliu/archive/2018/11/19/9984069.html)
+
 ### 2.依赖包安装
 
 	#The following or later version of packages for Oracle Linux 6, Red Hat Enterprise Linux 6, and Asianux Server 4 must be installed:
@@ -289,3 +291,11 @@ rlwrap 依赖包
 rlwrap安装包
 
 	rpm -ivh rlwrap-0.42-1.el6.x86_64.rpm
+
+### oralce自启动
+
+	vim /etc/rc.d/rc.local
+
+	su oracle -lc /home/oracle/app/oracle/product/11.2.0.4/db_1/bin/dbstart
+
+https://blog.csdn.net/weixin_43301601/article/details/87883000

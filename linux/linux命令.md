@@ -229,3 +229,19 @@ tar打包排除某个目录
 
 	在上面的例子中，0 – stdin (standard input)，1 – stdout (standard output)，2 – stderr (standard error) ；
 	2>&1是将标准错误（2）重定向到标准输出（&1），标准输出（&1）再被重定向输入到myout.file文件中。
+
+
+### sed命令
+
+查看5-10行的内容
+
+	sed -n '5,10p' filename
+
+### iconv 编码转换
+
+-f from 原编码
+-t to 转换后编码
+
+将文件file 编码从UFT-8转换为GB2312:
+
+	iconv file -f UTF-8 -t GB2312 -o file

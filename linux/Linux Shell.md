@@ -168,7 +168,34 @@ for ... done语句格式：
 	for var in 1 2 3 4 5 6 7 8 9 10
 	do 
 		echo "number is $var"
+
 	done
+
+遍历文件：
+
+        for file in ./querymanage*
+        do
+        if test -f $file
+        then
+                echo $file
+        fi
+        done
+
+
+		echo $1 
+		for file in ./querymanage.log.2019-0$1*
+		do
+		if test -f $file
+		then
+		    echo $file
+		    echo 'grep '5473973' '$file
+		    if [ `grep '5473973' $file` ]
+		        then
+		           echo 'found in '$file
+		    fi
+		fi
+		done
+
 select语句格式：
 
 	#!/bin/sh
