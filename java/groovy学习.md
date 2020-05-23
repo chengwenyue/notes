@@ -114,6 +114,9 @@ Identifiers start with a letter, a dollar or an underscore. They cannot start wi
 
 ### 4.String 
 
+#### 4.1 单引号字符
+
+
 单引号`'`字符串
 
 	'a single-quoted string'
@@ -149,3 +152,69 @@ Identifiers start with a letter, a dollar or an underscore. They cannot start wi
 支持Unicode escape sequence字符
 
 	'The Euro currency symbol: \u20AC'
+
+#### 4.2 双引号字符串（插值表达式） 
+
+占位符
+
+	def name = 'Guillaume' // a plain string
+	def greeting = "Hello ${name}"
+
+	println greeting.class
+	assert greeting.toString() == 'Hello Guillaume'
+	println greeting
+
+
+点分表达式
+
+	def person = [name: 'Guillaume', age: 36]
+	assert "$person.name is $person.age() years old" == 'Guillaume is 36() years old'
+	
+	def num = 1.2
+	
+	println "test ${num.class}"
+
+$ 的转义
+
+	assert '$5' == "\$5"
+	assert '${name}' == "\${name}"
+
+
+表达式中的闭包
+
+	def sParameterLessClosure = "1 + 2 == ${-> 3}"
+	assert sParameterLessClosure == '1 + 2 == 3'
+
+单参数的闭包，参数类型为StringWriter
+
+	def sOneParamClosure = "1 + 2 == ${ w -> println w.class; return w << 3}"
+	assert sOneParamClosure == '1 + 2 == 3'
+	StringWriter stringWriter = new StringWriter();
+	stringWriter << 3
+	println stringWriter;
+
+闭包的懒加载
+	
+	def number = 1
+	def eagerGString = "value == ${number}"
+	def lazyGString = "value == ${ -> number }"
+	
+	assert eagerGString == "value == 1"
+	assert lazyGString ==  "value == 1"
+	
+	number = 2
+	assert eagerGString == "value == 1"
+	assert lazyGString ==  "value == 2"
+
+
+
+GString和String 的hashCode不同，故在Map中如果使用String作为key需要注意
+
+	assert "one: ${1}".hashCode() != "one: 1".hashCode()
+	def key = "a"
+	def m = ["${key}": "letter ${key}"]
+	assert m["a"] == null
+
+#### 参考博客
+
+[http://www.groovy-lang.org/syntax.html](http://www.groovy-lang.org/syntax.html)

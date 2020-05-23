@@ -32,7 +32,7 @@
 ### 服务器带宽测试
 
 #### iperf
-	
+
 **服务端**
 	
 	iperf -s
@@ -57,7 +57,7 @@
 	-s    iperf服务器模式
 	-d    以后台模式运行服务端
 	-U    运行一个单一线程的UDP模式
-
+	
 	##客户端选项
 	
 	-b , --bandwidth n[KM]    指定客户端通过UDP协议发送数据的带宽（bit/s）。默认是1Mbit/s
@@ -108,7 +108,7 @@
 	tar -cvf log.tar log2012.log    仅打包，不压缩！ 
 	tar -zcvf log.tar.gz log2012.log   打包后，以 gzip 压缩 
 	tar -jcvf log.tar.bz2 log2012.log  打包后，以 bzip2 压缩 
-
+	
 	--no-same-owner 目录权限会使用当前操作用户的权限作为文件的所属
 查阅tar包内有哪些文件：
 
@@ -135,14 +135,21 @@ tar打包排除某个目录
 
 ### centos7 修改时间和时区
 
-	timedatectl set-local-rtc 1 # 将硬件时钟调整为与本地时钟一致, 0 为设置为 UTC 时间
-	或者 hwclock --systohc --localtime 
+```shell
+timedatectl set-local-rtc 1 # 将硬件时钟调整为与本地时钟一致, 0 为设置为 UTC 时间
+或者 hwclock --systohc --localtime 
 
-	timedatectl set-timezone Asia/Shanghai # 设置系统时区为上海
-	
-	替换/etc/localtime文件
-	[root@test ~]# mv /etc/localtime /etc/localtime.bak
-	[root@test ~]# cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+timedatectl set-timezone Asia/Shanghai # 设置系统时区为上海
+
+替换/etc/localtime文件
+[root@test ~]# mv /etc/localtime /etc/localtime.bak
+[root@test ~]# cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+ntpdate ip
+
+# 将系统时间写入硬件时间
+hwclock --systohc
+```
 
 ### 记一次linux隐藏进程号的方法
 
@@ -207,7 +214,7 @@ tar打包排除某个目录
 	passwd tmp_3452
 删除用户
 
-	
+
 	userdel tmp_3452
 	-f 连同用户文件夹一起删除
 
@@ -226,7 +233,7 @@ tar打包排除某个目录
 ### nohup 命令使用
 
 	nohup command > myout.file 2>&1 &
-
+	
 	在上面的例子中，0 – stdin (standard input)，1 – stdout (standard output)，2 – stderr (standard error) ；
 	2>&1是将标准错误（2）重定向到标准输出（&1），标准输出（&1）再被重定向输入到myout.file文件中。
 
@@ -245,3 +252,37 @@ tar打包排除某个目录
 将文件file 编码从UFT-8转换为GB2312:
 
 	iconv file -f UTF-8 -t GB2312 -o file
+
+#### ssh 端口转发
+
+转发方式
+
+
+>host3--能访问-->host1
+
+>host3--能访问-->host2
+
+>host1--不能访问->host2
+
+在host3上进行端口转发
+
+	ssh -R 2121:host2:21 host1
+	
+	ssh -N -R 12222:192.168.5.101:22 root@47.105.100.166
+
+host1上所有12222端口的数据都会转发到host2上22端口
+
+在host1就能ssh登陆到host2上
+
+	ssh root@localhost -p 12222
+
+要求host1和host3两台主机都有sshD和ssh客户端
+
+由于默认配置下，远程SSH Server只能绑定到127.0.0.1地址上，所以SSH Server以外的机器是不能使用到这个端口转发的，解决方法：
+	
+
+	GatewayPorts yes
+	
+	ssh -N -R *:12222:192.168.5.101:22 root@47.105.100.166
+
+`*`表示所有IP地址

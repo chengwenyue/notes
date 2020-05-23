@@ -56,3 +56,8 @@ pom.xml文件中properties标签中的属性可以在编译时自动替换.prope
 
 
 [学习Maven之Properties Maven Plugin](https://blog.csdn.net/bao19901210/article/details/52400890)
+
+
+#### 拷贝项目依赖jar
+
+ 	mvn dependency:copy-dependencies -DoutputDirectory=lib

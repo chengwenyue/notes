@@ -46,7 +46,7 @@ mysqld_safe负责启动mysqld进程。
 在启动命令中指定数据目录和mysql安装目录
 
 	bin/mysqld_safe --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data/mysql & 
-
+	
 	kill <mysqld pid> ## 关闭mysqld
 
 
@@ -68,7 +68,7 @@ mysqld_safe常用的启动选项，具体参考[mysqld_safe-options](https://dev
 	# http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html
 	
 	[mysqld]
-
+	
 	basedir = /usr/local/mysql/
 	datadir = /usr/local/mysql/data/mysql
 	port = 3306
@@ -84,7 +84,7 @@ mysqld_safe常用的启动选项，具体参考[mysqld_safe-options](https://dev
 编辑mysql.server脚本，增加如下内容：
 
 	vim support-files/mysql.server
-
+	
 	basedir=[mysql安装目录]
 	datadir=[mysql数据目录]
 

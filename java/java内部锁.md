@@ -85,6 +85,7 @@ Java从JDK1.5开始提供了java.util.concurrent.atomic包，方便程序员在�
 - 原子更新字段类：AtomicLongFieldUpdater，AtomicIntegerFieldUpdater，AtomicReferenceFieldUpdater
 
 LockFree算法
+
 通常是三个部分组成
 1. 循环
 2. CAS
@@ -109,3 +110,13 @@ cas缺点：
 
 - [https://blog.csdn.net/u010983881/article/details/80415779](https://blog.csdn.net/u010983881/article/details/80415779)
 - [用Atomic实现可以等待的锁](https://zhuanlan.zhihu.com/p/33127453)
+
+
+
+### sync和lock接口
+
+
+- 1.6 之后，两者性能差不多。
+
+- sync 语法方便，简单
+- lock 手动释放锁，灵活，能实现高级功能

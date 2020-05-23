@@ -41,6 +41,8 @@
 	git checkout -b release origin/release，作用参见上一步解释
 	git checkout dev，切换回dev分支，并开始开发。
 
+	git check-ignore -v App.class 检查App.class被那个ignore规则忽略
+
 ### git pull报错(non-fast-forward)
 
 本地比远程新，直接执行push

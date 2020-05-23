@@ -211,3 +211,102 @@ docker exec -it centos1 /bin/bash
 	-p 4432:443 \
 	-p 4443:4443 \
 	-e DOMAIN='ngrok.comeon111.xyz' hteen/ngrok /bin/sh /server.sh
+
+
+
+## Dockerfile
+
+
+
+### FROM 
+
+指定基础镜像
+
+
+### ADD COPY
+
+
+将宿主文件添加到镜像中
+
+	ADD <src>... <dest>
+
+
+
+src可以是文件，文件夹，也可以是多个文件，如果是多文件或文件夹，dest必须是文件夹后面加`/`
+
+COPY和ADD使用方法一致
+
+区别：
+ADD支持解压tar,从url拉取文件
+
+### WORKDIR
+
+指定工作目录，docker会自动跳转到此目录
+
+	WORKDIR <dirpath>
+
+### VOLUME
+
+用来创建挂载点
+
+	VOLUME [<mountpoint>]
+
+后面的参数指定的是镜像的目录，docker挂载完后会自动在宿主机上生成一个目录，随机生成的好处是，防止多容器在宿主机上挂载点冲突。
+
+### EXPOSE
+
+打开容器的端口，使容器可以和外部通讯
+
+	EXPOSE <port>[/<protocol>] [<port>[/<protocol>]]
+
+protocol可以是 TCP UDP
+
+
+### ENV
+
+用来定义镜像所需要的环境变量，供后面的命令使用
+
+	ENV <key> <value>
+	ENV <key>=<value> ... 
+
+### ARG
+
+用法同ENV相同
+
+	ARG <name>[=<default value>]
+
+在dockers build构建镜像时可以使用 `--build-arg <varname>=<value>`来指定参数，如果不指定，则使用默认值
+
+### RUN
+
+指定docker build过程中运行的命令
+
+	RUN <command>
+	RUN [<executanle>,<param1>,<param2>]
+
+
+### CMD
+
+容器启动时运行的命令
+
+	CMD <command>
+	CMD [<executanle>,<param1>,<param2>]
+	CMD [<param1>,<param2>]
+
+
+1. RUN和CMD的区别，RUN运行在build过程，CMD则运行在构建后的镜像上
+2. 如果有多个CMD指令，只有最后一个生效
+3. CMD主要给容器指定默认要运行的程序，且运行结束后，容器也会终止。
+
+### ENTERPOINT
+
+类似CMD指令的功能，用户预定默认运行程序
+
+	ENTERPOINT <command>
+	ENTERPOINT [<executanle>,<param1>,<param2>]
+
+ENTERPOINT和CMD的区别是：ENTERPOINT不会被docker的指令覆盖
+
+
+	
+
