@@ -12,6 +12,8 @@
 	shell> apt-cache search libaio # search for info
 	shell> apt-get install libaio1 # install library
 	shell> apt-get install -y perl pwgen --no-install-recommends
+	
+	yum install libaio
 
 ### 安装mysql
 

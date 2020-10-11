@@ -42,5 +42,18 @@ CoyoteAdapter解析Request，执行**请求映射** ，并调用Engine的管道�
 
 Engine
 
+## 2 tomcat IO模型
+
+
+
+
+
+| 模型 | 描述                                                         |
+| :--- | ------------------------------------------------------------ |
+| BIO  | 阻塞式IO，采用传统的java IO进行操作，该模式下每个请求都会创建一个线程，适用于并发量小的场景 |
+| NIO  | 同步非阻塞，比传统BIO能更好的支持大并发，tomcat 8.0 后默认采用该模式（Http11NioProtocol） |
+| APR  | tomcat 以JNI形式调用http服务器的核心动态链接库来处理文件读取或网络传输操作，需要编译安装APR库 |
+| AIO  | 异步非阻塞，tomcat8.0后支持（Http11Nio2Protocol）            |
+
 
 

@@ -11,6 +11,10 @@
 
 `FIFO/LRU/LFU `:三种缓存算法。
 
+幂等性(Idempotence) ：HTTP方法的幂等性是指一次和多次请求某一个资源应该具有同样的副作用。
+
+
+
 ### java 组件
 
 `Excel4J`：读取excel的组件
@@ -26,8 +30,8 @@
 
 ### linux 后台运行java
 
-	nohup java -jar xxxx.jar > myout.out 2>&1 &
-	
+	c
+
 
 nohup 命令使用
 

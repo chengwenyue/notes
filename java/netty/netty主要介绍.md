@@ -1,5 +1,12 @@
 # Netty介绍
 
+功能列表：
+
+- Unified API for various transport types - blocking and non-blocking socket
+- Based on a flexible and extensible event model which allows clear separation of concerns
+- Highly customizable thread model - single thread, one or more thread pools such as SEDA
+- True connectionless datagram socket support (since 3.1)
+
 
 
 ## 1. EventLoop 体系

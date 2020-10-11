@@ -21,14 +21,22 @@
 	git merge命令用于合并指定分支到当前分支
 	
 	git config --list查看已设配置
-
+	
 	git remote add origin https://github.com/chengwenyue/TSWeb.git 添加远程仓库
-
+	
 	git config --system --list 查看系统config
 	git config --global  --list 查看当前用户（global）配置
 	git config --local  --list 查看当前仓库配置信息
-
 	
+	git config --global http.https://github.com.proxy https://127.0.0.1:1080
+	git config --global https.https://github.com.proxy https://127.0.0.1:1080
+	
+	git config --global --unset http.proxy
+	git config --global --unset https.proxy
+	
+
+
+​	
 	git config --system --unset credential.helper  清除账户密码
 	
 	git config --global credential.helper store 保存账户密码
@@ -40,7 +48,7 @@
 	git checkout -b dev origin/dev，作用是checkout远程的dev分支，在本地起名为dev分支，并切换到本地的dev分支
 	git checkout -b release origin/release，作用参见上一步解释
 	git checkout dev，切换回dev分支，并开始开发。
-
+	
 	git check-ignore -v App.class 检查App.class被那个ignore规则忽略
 
 ### git pull报错(non-fast-forward)

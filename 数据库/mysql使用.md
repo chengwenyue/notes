@@ -4,3 +4,4 @@
 
 	grant all privileges on db to test@'%' identified by 'passwd';
 	flush privileges;
+
