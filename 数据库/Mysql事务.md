@@ -26,7 +26,7 @@
 3. repeatable read 可重复读 ： 有事务在读取时，其他事务不能修改
 4. serializable  可串行化 ： 串行化访问
 
-
+> mysql默认的事务隔离级别为 repeatable read
 
 
 

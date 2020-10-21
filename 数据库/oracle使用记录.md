@@ -30,7 +30,7 @@
 
 [Linux系统主机名变成bogon的解决方法](https://blog.csdn.net/ttxsely/article/details/78252685)
 
-	
+​	
 
 ### oracle数据库死锁解决
 

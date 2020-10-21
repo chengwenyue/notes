@@ -147,3 +147,12 @@ linux系统上读取配置文件
 3.设置开机自启
 
 	systemctl enable mysqld
+
+
+
+## mysql 常用命令搜集
+
+### 1. mysql授权数据库
+
+	grant all privileges on db to test@'%' identified by 'passwd';
+	flush privileges;
