@@ -5,7 +5,9 @@
 	
 	JAVA_OPTS='-Xms256m -Xmx512m'
 	
-	-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof
+	-XX:+HeapDumpOnOutOfMemoryError 设置当内存溢出时dump内存
+	-XX:HeapDumpPath=/tmp/heapdump.hprof 设置dump的路径
+
 
 ### java dump线程信息
 
@@ -15,21 +17,21 @@
 ​	
 ​	jstack -h # 帮助日志
 ​	
-	Usage:
-	jstack [-l] <pid>
-	    (to connect to running process)
-	jstack -F [-m] [-l] <pid>
-	    (to connect to a hung process)
-	jstack [-m] [-l] <executable> <core>
-	    (to connect to a core file)
-	jstack [-m] [-l] [server_id@]<remote server IP or hostname>
-	    (to connect to a remote debug server)
-	
-	Options:
-	    -F  to force a thread dump. Use when jstack <pid> does not respond (process is hung)
-	    -m  to print both java and native frames (mixed mode)
-	    -l  long listing. Prints additional information about locks
-	    -h or -help to print this help message
+​	Usage:
+​	jstack [-l] <pid>
+​	    (to connect to running process)
+​	jstack -F [-m] [-l] <pid>
+​	    (to connect to a hung process)
+​	jstack [-m] [-l] <executable> <core>
+​	    (to connect to a core file)
+​	jstack [-m] [-l] [server_id@]<remote server IP or hostname>
+​	    (to connect to a remote debug server)
+​	
+​	Options:
+​	    -F  to force a thread dump. Use when jstack <pid> does not respond (process is hung)
+​	    -m  to print both java and native frames (mixed mode)
+​	    -l  long listing. Prints additional information about locks
+​	    -h or -help to print this help message
 
 #### java dump线程分析工具
 

@@ -30,8 +30,6 @@
 
 ### linux 后台运行java
 
-	c
-
 
 nohup 命令使用
 

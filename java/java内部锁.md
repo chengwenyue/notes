@@ -2,34 +2,36 @@
 
 生产者消费者模型是我们学习多线程知识的一个经典案例，一个典型的生产者消费者模型如下：
 
-    public void produce() {
-        synchronized (this) {
-            while (mBuf.isFull()) {
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+```java
+public void produce() {
+    synchronized (this) {
+        while (mBuf.isFull()) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            mBuf.add();
-            notifyAll();
         }
+        mBuf.add();
+        notifyAll();
     }
-    
-    public void consume() {
-        synchronized (this) {
-            while (mBuf.isEmpty()) {
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+}
+
+public void consume() {
+    synchronized (this) {
+        while (mBuf.isEmpty()) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            mBuf.remove();
-            notifyAll();
         }
-    
+        mBuf.remove();
+        notifyAll();
     }
+
+}
+```
 
 这段代码很容易引申出来两个问题：一个是wait()方法外面为什么是while循环而不是if判断，另一个是结尾处的为什么要用notifyAll()方法，用notify()行吗。
 
