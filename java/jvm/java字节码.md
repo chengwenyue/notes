@@ -53,8 +53,102 @@ public class ByteCodeDemo {
 | 常量     | 具体的常量              |
 | -------- | ----------------------- |
 | 字面量   | 文本字符串              |
-|          | 声明为final的常量基本值 |
+|          | 声明为final的基本值常量 |
 | 符号引用 | 类和接口的全限定名      |
 |          | 字段的名称和描述符      |
 |          | 方法的名称和描述符      |
+
+### 2.1 字面量
+
+字面量分为两种，一种是文本字符串，一种是声明为final的基本值
+
+文本字符串对应的为 constant_utf8_info 结构，final基本值常量对应为 constant_integer_info，constant_long_info，constant_float_info和constant_double_info四种结构。
+
+对下面的代码进行编译，在执行`javap -verbose ByteCodeDemo`后能得到如下常量池，在常量池中能够发现由于变量b是final的，所以对应的值2，会变成常量池中的constant_integer_info结构，例如15号索引常量，`Integer 2`，而未加final的变量a的值则不会进入常量池，不过a的值最终会在该类的构造方法中被赋值。
+
+```java
+public class ByteCodeDemo {
+    private int a = 1;
+    private final int b = 2;
+    private String str = "this is string";
+    private final String str2 = "this is final string";
+    private final Object obj = new Object();
+    private Object obj2 = new Object();
+}
+```
+
+```
+Constant pool:
+   #1 = Methodref          #8.#32         // java/lang/Object."<init>":()V
+   #2 = Fieldref           #11.#33        // cwy/demo/jvm/bytecode/ByteCodeDemo1.a:I
+   #3 = Fieldref           #11.#34        // cwy/demo/jvm/bytecode/ByteCodeDemo1.b:I
+   #4 = String             #35            // this is string
+   #5 = Fieldref           #11.#36        // cwy/demo/jvm/bytecode/ByteCodeDemo1.str:Ljava/lang/String;
+   #6 = String             #37            // this is final string
+   #7 = Fieldref           #11.#38        // cwy/demo/jvm/bytecode/ByteCodeDemo1.str2:Ljava/lang/String;
+   #8 = Class              #39            // java/lang/Object
+   #9 = Fieldref           #11.#40        // cwy/demo/jvm/bytecode/ByteCodeDemo1.obj:Ljava/lang/Object;
+  #10 = Fieldref           #11.#41        // cwy/demo/jvm/bytecode/ByteCodeDemo1.obj2:Ljava/lang/Object;
+  #11 = Class              #42            // cwy/demo/jvm/bytecode/ByteCodeDemo1
+  #12 = Utf8               a
+  #13 = Utf8               I
+  #14 = Utf8               b
+  #15 = Utf8               ConstantValue
+  #16 = Integer            2
+  #17 = Utf8               str
+  #18 = Utf8               Ljava/lang/String;
+  #19 = Utf8               str2
+  #20 = Utf8               obj
+  #21 = Utf8               Ljava/lang/Object;
+  #22 = Utf8               obj2
+  #23 = Utf8               <init>
+  #24 = Utf8               ()V
+  #25 = Utf8               Code
+  #26 = Utf8               LineNumberTable
+  #27 = Utf8               LocalVariableTable
+  #28 = Utf8               this
+  #29 = Utf8               Lcwy/demo/jvm/bytecode/ByteCodeDemo1;
+  #30 = Utf8               SourceFile
+  #31 = Utf8               ByteCodeDemo1.java
+  #32 = NameAndType        #23:#24        // "<init>":()V
+  #33 = NameAndType        #12:#13        // a:I
+  #34 = NameAndType        #14:#13        // b:I
+  #35 = Utf8               this is string
+  #36 = NameAndType        #17:#18        // str:Ljava/lang/String;
+  #37 = Utf8               this is final string
+  #38 = NameAndType        #19:#18        // str2:Ljava/lang/String;
+  #39 = Utf8               java/lang/Object
+  #40 = NameAndType        #20:#21        // obj:Ljava/lang/Object;
+  #41 = NameAndType        #22:#21        // obj2:Ljava/lang/Object;
+  #42 = Utf8               cwy/demo/jvm/bytecode/ByteCodeDemo1
+```
+
+代码中的文本字符串会被转换成constant_string_info结构，也会进入常量池中，不管该是不是被final修饰，例如上面变量str和str2，分别对应常量的索引4号和索引6号。
+
+```java
+private String str = "this is string";
+private final String str2 = "this is final string";
+```
+```
+#4 = String             #35            // this is string
+#6 = String             #37            // this is final string
+#35 = Utf8               this is string
+#37 = Utf8               this is final string
+```
+
+不过constant_string_info实际上是一个符号引用，对应的真实值为constant_utf8_info结构，在被jvm加载后解析时会转换成直接引用。
+
+### 2.2 符号引用
+
+符号引用是一个特殊的字符串，用来标识一个类或者接口的全限定名，例如常量索引8号，结构为constant_class_info
+
+```
+#8 = Class              #39            // java/lang/Object
+```
+
+符号引用最终会被jvm转换为直接引用，这个过程会在jvm解析字节码文件时进行，直接引用指的是一段内存地址，为什么会有这个过程呢，个人理解是java在编译代码时并不知道最终的类对象，或者方法对象的真实地址，因为真实地址只有在jvm运行时才能在内存中分配，所有java在编译时只能使用符号引用来标识一个类或者方法，等到真正被jvm加载解析时才会识别并转换为直接引用。
+
+
+
+## 3. 访问标志
 
