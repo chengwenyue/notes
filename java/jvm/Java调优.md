@@ -1,9 +1,24 @@
 ### Java Ops
 
-	-Xmx258m：设置JVM最大可用内存为258M。
-	-Xms516m：设置JVM初始内存为516m。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。
+	-Xmx258m 堆最小值。
+	-Xms516m 堆最大值。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。
+	-Xmn1m 年轻代大小
+	-Xss1024K 设定每个线程的堆栈大小
 	
 	JAVA_OPTS='-Xms256m -Xmx512m'
+	
+	-XX:PermSize=256m -XX:MaxPermSize=512m  jdk1.7的永久代大小限制，1.8中无效
+	
+	-XX:MetaspaceSize=128m  jdk1.8元空间初始大小
+	-XX:MaxMetaspaceSize=320m  元空间最大值
+	 
+	-XX:+HeapDumpOnOutOfMemoryError 当jvm内存溢出时，dump内存
+	-XX:+PrintGCTimeStamps 打印gc时间戳
+	-XX:+PrintGCDetails 打印gc细节
+	-XX:+PrintHeapAtGC 在gc前后打印堆信息
+	-Xloggc:gc.log  gc日志文件
+	-verbose:gc 打印gc日志
+	 
 	
 	-XX:+HeapDumpOnOutOfMemoryError 设置当内存溢出时dump内存
 	-XX:HeapDumpPath=/tmp/heapdump.hprof 设置dump的路径

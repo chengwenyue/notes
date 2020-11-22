@@ -154,5 +154,9 @@ linux系统上读取配置文件
 
 ### 1. mysql授权数据库
 
-	grant all privileges on db to test@'%' identified by 'passwd';
+	use mysql;
+	grant all privileges on `db`.* to 'test'@'%' identified by 'passwd';
+	
+	GRANT ALL PRIVILEGES ON `db`.* TO 'test'@'%';
+	 
 	flush privileges;

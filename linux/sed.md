@@ -26,3 +26,7 @@ find . -name "*.xml" | xargs sed -i 's/@172.18.85.2/@172.18.52.232/g'
 find . -name "*.yml" | xargs grep '@172.18.85.2'
 
 find . -name "*.yml" | xargs sed -i 's/@172.18.85.2/@172.18.52.232/g'
+
+
+
+find . -name "*test.yml" | xargs sed -i '28i\            keep-alive: true'
