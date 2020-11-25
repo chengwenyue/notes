@@ -18,10 +18,11 @@
 	-XX:+PrintHeapAtGC 在gc前后打印堆信息
 	-Xloggc:gc.log  gc日志文件
 	-verbose:gc 打印gc日志
-	 
-	
-	-XX:+HeapDumpOnOutOfMemoryError 设置当内存溢出时dump内存
-	-XX:HeapDumpPath=/tmp/heapdump.hprof 设置dump的路径
+
+
+​	
+​	-XX:+HeapDumpOnOutOfMemoryError 设置当内存溢出时dump内存
+​	-XX:HeapDumpPath=/tmp/heapdump.hprof 设置dump的路径
 
 
 ### java dump线程信息
@@ -48,7 +49,7 @@
 ​	    -l  long listing. Prints additional information about locks
 ​	    -h or -help to print this help message
 
-#### java dump线程分析工具
+### java dump线程分析工具
 
 [IBMThreadDumpAnalyzer](https://www.ibm.com/support/pages/ibm-thread-and-monitor-dump-analyzer-java-tmda)
 
@@ -66,7 +67,7 @@
 >这个命令执行，JVM会将整个heap的信息dump写入到一个文件，heap如果比较大的话，就会导致这个过程比较耗时，并且执行的过程中为了保证dump的信息是可靠的，所以会暂停应用， 线上系统慎用。
 
 
-#### java 内存分析工具
+### java 内存分析工具
 
 Memory Analyzer Tool
 
@@ -79,6 +80,18 @@ l来看看那些对象大量存在回收不掉：jmap -histo pid |more
 l查看线程堵塞：jstack pid
 l查看当前进程的线程：top -H -p <pid>
 l查看某个进程的连接数：netstat -atp | grep tomcat进程号| wc -l
+
+
+
+### Java HSDB工具
+
+windows
+
+```
+java -classpath "%JAVA_HOME%/lib/sa-jdi.jar" sun.jvm.hotspot.HSDB
+```
+
+
 
 
 
