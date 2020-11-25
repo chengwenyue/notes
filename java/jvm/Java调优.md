@@ -18,6 +18,9 @@
 	-XX:+PrintHeapAtGC 在gc前后打印堆信息
 	-Xloggc:gc.log  gc日志文件
 	-verbose:gc 打印gc日志
+	
+	开启(-XX:+UseCompressedOops) 可以压缩指针。 
+	关闭(-XX:-UseCompressedOops) 可以关闭压缩指针。 
 
 
 ​	
@@ -61,6 +64,10 @@
 	
 	加上live只指定活动的对象
 	jmap -dump:live,format=b,file=dump.hprof pid
+	
+	# 打印Java堆信息
+	jmap -heap pid 
+	
 
 
 
@@ -92,6 +99,10 @@ java -classpath "%JAVA_HOME%/lib/sa-jdi.jar" sun.jvm.hotspot.HSDB
 ```
 
 
+
+扫描类
+
+scanoops 0x0000000012600000 0x00000000128b0000 Main
 
 
 

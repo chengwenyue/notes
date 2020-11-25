@@ -29,7 +29,13 @@ JVM 内存布局总体如下图：
 
 类加载之后，常量池的内容会进入运行时常量池，这时候里面的数据也许还保持着符号引用。
 
-
-
 常量池有运行时常量池和String常量池。
+
+​	运行时常量池包含类元信息，方法段等，字节码常量池等，存放在元空间中。
+
+​	String常量池是jvm存放字符串的一个缓存池，由StringTable实现，StringTable的key是引用，value是堆中真实的字符串地址。返回给Java层的实际上是句柄引用，指向StringTable的key。
+
+JDK1.8 静态变量存放在 Class对象中，而Class对象存放在堆中，静态变量也都存放在堆中。可参考如下博客：
+
+https://blog.csdn.net/x_iya/article/details/81260154#comments
 
