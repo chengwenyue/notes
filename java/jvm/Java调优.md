@@ -9,6 +9,7 @@
 	
 	-XX:PermSize=256m -XX:MaxPermSize=512m  jdk1.7的永久代大小限制，1.8中无效
 	
+	// JDK1.8 默认不限制元空间的大小
 	-XX:MetaspaceSize=128m  jdk1.8元空间初始大小
 	-XX:MaxMetaspaceSize=320m  元空间最大值
 	 
@@ -67,7 +68,7 @@
 	
 	# 打印Java堆信息
 	jmap -heap pid 
-	
+
 
 
 
