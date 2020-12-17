@@ -52,9 +52,11 @@ JVM 内存布局总体如下图：
 
 常量池有运行时常量池和String常量池和class文件中的静态常量池。
 
+​	class文件中的常量池是静态的用来标识字节码的字面量和符号引用。
+
 ​	运行时常量池是class中常量池的一种运行时的形式，包含符号引用和字面量，jdk1.8后在方法区分配。包含类元信息，方法段等，字节码常量池等，存放在元空间中。
 
-​	String常量池是jvm存放字符串的一个缓存池，由StringTable实现，StringTable的key是引用，value是堆中真实的字符串地址。返回给Java层的实际上是句柄引用，指向StringTable的key。
+​	String常量池是jvm存放字符串的一个缓存池，由StringTable实现，存放在堆中，StringTable的key是引用，value是堆中真实的字符串地址。返回给Java层的实际上是句柄引用，指向StringTable的key。
 
 JDK1.8 静态变量存放在 Class对象中，而Class对象存放在堆中，静态变量也都存放在堆中。可参考如下博客：
 
@@ -63,6 +65,21 @@ https://blog.csdn.net/x_iya/article/details/81260154#comments
 https://www.iteye.com/blog/rednaxelafx-1847971
 
 
+
+方法区，永久代，元空间区别？
+
+方法区是JVM规范，永久代和元空间是具体实现
+
+jdk1.8之前是永久代，存放在堆中，jdk1.8以后就是元空间，存放在直接内存中。
+
+
+
+何时对象会进入老年代？
+
+1. gc年龄大于15岁
+2. 大对象（对象大小超过eden区的一半）
+3. 空间担保（gc后的eden区还剩超过20%以上的，直接进入老年代）
+4. 动态年龄判断
 
 对象头计算
 
