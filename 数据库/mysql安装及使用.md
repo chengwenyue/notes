@@ -131,8 +131,21 @@ linux系统上读取配置文件
           <td scope="row"><code class="filename">~/.mylogin.cnf</code></td>
           <td>User-specific login path options (clients only)</td>
 </tr></tbody></table>
-
 具体配置项还需参考[官网配置](https://dev.mysql.com/doc/refman/5.6/en/option-files.html)
+
+#### 查看mysqld的启动参数
+
+```
+mysqld --defaults-file=3307/my.cnf --verbose --help
+```
+
+`--defaults-file`:指定 配置文件位置
+
+```
+my_print_defaults 打印mysql配置的命令
+```
+
+
 
 ### mysql开机自启
 
@@ -160,3 +173,8 @@ linux系统上读取配置文件
 	GRANT ALL PRIVILEGES ON `db`.* TO 'test'@'%';
 	 
 	flush privileges;
+
+
+​	
+
+	ALTER USER 'root'@'localhost' IDENTIFIED BY 'root-password';
