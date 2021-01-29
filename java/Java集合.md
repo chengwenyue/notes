@@ -164,8 +164,6 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 
 
 
-
-
 ### 1.2 ConcurrentHashMap
 
 
@@ -176,5 +174,67 @@ JDK1.7的扩容是每个段单独扩容，并且每个段初始化使用的是s0
 
 JDK1.8的扩容是直接将桶数组翻倍，并采用分区迁移数据，其他线程可以同时协助数据迁移。计算大小时采用并发累加器（类似LongAdder）。
 
-#### 1.2.1 JDK1.7
+不在介绍JDK1.7的实现了，下面对JDK1.8的ConcurrentHashMap源码分析。
+
+
+
+#### 1.2.1 ConcurrentHashMap的字段
+
+``` java
+// map的桶数组，第一次插入时初始化
+transient volatile Node<K,V>[] table;
+
+/**
+ * The next table to use; non-null only while resizing.
+ */
+private transient volatile Node<K,V>[] nextTable;
+
+/**
+ * Base counter value, used mainly when there is no contention,
+ * but also as a fallback during table initialization
+ * races. Updated via CAS.
+ */
+private transient volatile long baseCount;
+
+/**
+ * Table initialization and resizing control.  When negative, the
+ * table is being initialized or resized: -1 for initialization,
+ * else -(1 + the number of active resizing threads).  Otherwise,
+ * when table is null, holds the initial table size to use upon
+ * creation, or 0 for default. After initialization, holds the
+ * next element count value upon which to resize the table.
+ */
+private transient volatile int sizeCtl;
+
+/**
+ * The next table index (plus one) to split while resizing.
+ */
+private transient volatile int transferIndex;
+
+/**
+ * Spinlock (locked via CAS) used when resizing and/or creating CounterCells.
+ */
+private transient volatile int cellsBusy;
+
+/**
+ * Table of counter cells. When non-null, size is a power of 2.
+ */
+private transient volatile CounterCell[] counterCells;
+```
+
+ConcurrentHashMap的put流程
+
+1. 如果map没有初始化那么，使用CAS初始化桶数组，只允许一个线程初始化，其他线程yield让出cpu
+2. 根据hash找到对应的数组下标。
+3. 判断该下标对应的元素是否为空，如果为空，使用CAS设置Entry到数组中
+4. 如果CAS失败，说明改位置有元素，那么对该元素加锁，判断元素是链表还是红黑树，执行响应的插入操作。
+5. 如果链表长度过长，将链表转为红黑树。
+
+为什么先CAS，后加锁？
+
+个人理解是，当key对应的bin无元素时，此时无法进行加锁，而且第一个元素使用cas的效率比加锁快。
+
+
+
+加锁的区别和JDK1.7为：使用synchronized关键字加锁，并且用数组元素加锁。
 

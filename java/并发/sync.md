@@ -23,9 +23,9 @@
 	
 	- 新建（New）
 	- 运行（Runable）
-	- 无限期等待（Waiting）
-	- 限期等待（Timed Waiting）
-	- 阻塞（Blocked）
+	- 无限期等待（Waiting）调用 Object.wait，Thread.join，LockSupport.park
+	- 限期等待（Timed Waiting） 调用 Object.wait(timeout)，Thread.join(timeout)，Thread.sleep，LockSupport.parkNanos/Until
+	- 阻塞（Blocked）-- 线程等待一个 synchronized block/method
 	- 结束（Terminated）
 
 

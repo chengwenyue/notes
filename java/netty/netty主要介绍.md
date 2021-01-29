@@ -1,10 +1,14 @@
 # Netty介绍
 
+Netty是一个NIO客户端服务器框架，可快速轻松地开发网络应用程序，例如协议服务器和客户端。它极大地简化和简化了网络编程，例如TCP和UDP套接字服务器。
+
+
+
 功能列表：
 
-- Unified API for various transport types - blocking and non-blocking socket
+- Unified API for various transport types - blocking and non-blocking socket（封装了统一的io模型的api  channel）
 - Based on a flexible and extensible event model which allows clear separation of concerns
-- Highly customizable thread model - single thread, one or more thread pools such as SEDA
+- Highly customizable thread model - single thread, one or more thread pools such as SEDA（高度灵活的线程模型）
 - True connectionless datagram socket support (since 3.1)
 
 

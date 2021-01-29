@@ -34,8 +34,6 @@
 
 	jstack -l 8909  > mydumps.tdump
 
-
-​	
 ​	jstack -h # 帮助日志
 ​	
 ​	Usage:
@@ -53,6 +51,14 @@
 ​	    -m  to print both java and native frames (mixed mode)
 ​	    -l  long listing. Prints additional information about locks
 ​	    -h or -help to print this help message
+
+#### jstack线程信息分析
+
+1. 查看线程所处的状态，runable,Blocked,waiting,time_waiting。
+2. 根据线程分析线程是否阻塞在锁上，或者在锁上等待等。
+3. 分析线程代码栈信息。
+
+
 
 ### java dump线程分析工具
 
