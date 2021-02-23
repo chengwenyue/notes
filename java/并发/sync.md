@@ -28,6 +28,19 @@
 	- 阻塞（Blocked）-- 线程等待一个 synchronized block/method
 	- 结束（Terminated）
 
+```
+"Druid-ConnectionPool-Destory-2109666142" daemon prio=10 tid=0x00007fbae888d800 nid=0x27e1 waiting on condition [0x00007fbb9f506000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+   
+"Druid-ConnectionPool-Create-2109666142" daemon prio=10 tid=0x00007fbae888c800 nid=0x27e0 waiting on condition [0x00007fbb9f7a1000]
+   java.lang.Thread.State: WAITING (parking)
+
+"DefaultQuartzScheduler_Worker-1" prio=10 tid=0x00007fbae8845000 nid=0x28b4 in Object.wait() [0x00007fbb9d0b9000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+
+
+```
+
 
 
 5. 如果在sync抛出异常时会自动释放锁

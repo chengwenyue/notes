@@ -160,6 +160,13 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 
 
 
+#### 1.1.7 HashMap的线程安全问题
+
+1. 当HashMap在初始化时，如果两个线程同时初始化数组，会出现一个线程覆盖另一个线程的已经初始化的数组，导致数据丢失。
+2. 当Hash冲突时，如果数组hash的位置没有数据，那么在并发的情况下，会出现数据覆盖的问题。
+3. 扩容时，在多线程情况下也会出现数据覆盖的情况。
+4. put元素时由于size++不是原子操作，所以会map的size会小于实际的size。
+
 
 
 
