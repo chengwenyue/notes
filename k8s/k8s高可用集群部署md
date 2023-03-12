@@ -1,0 +1,55 @@
+## 1. 安装keepalive
+
+
+
+```
+文档：https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/nd7yOvdY
+
+
+yum install -y keepalived
+
+
+kubeadm init --image-repository=registry.aliyuncs.com/google_containers --pod-network-cidr=10.244.0.0/16
+--apiserver-advertise-address 192.168.5.10 --pod-network-cidr 10.10.0.0/16
+sudo kubeadm init --apiserver-advertise-address 192.168.12.11 --pod-network-cidr 10.10.0.0/16
+
+kubeadm config images pull
+#关闭 swap
+swapoff -a 
+ echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "registry-mirrors" : [
+    "http://hub-mirror.c.163.com"
+  ]
+}
+EOF
+
+
+    sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+
+systemctl restart kubelet
+
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+
+kubeadm join 192.168.5.10:6443 --token abcdef.0123456789abcdef \
+        --discovery-token-ca-cert-hash sha256:34b54865eed16e820fd7eb9ed329b0ad9e101e562217be7d12282d4ff8010d6e
+kubeadm join 192.168.5.10:6443 --token abcdef.0123456789abcdef \
+        --discovery-token-ca-cert-hash sha256:6b7c5bb7066ce2d831d43e4c6da9265ef001126d3cf52f22df31c31a386e526a
+        
+kubeadm join 192.168.5.10:6443 --token 1jjlp8.oh9dywk0jkt20ypi \
+        --discovery-token-ca-cert-hash sha256:fc519ea33519ffa13bb1c158e498ddc6c963fdc9005b1985fbf8d7963da8764c
+
+
+kubectl expose deployment nginx-deployment --port=6666 --target-port=80
+
+
+```
